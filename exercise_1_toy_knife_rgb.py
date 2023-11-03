@@ -47,10 +47,11 @@ def main():
         # (5) Display the masked image in the CV2 window "Color Picker".
 
         # Your code here
-        shape = image.shape
-        thicc = np.zeros((shape[0], 2*shape[1], shape[2]), dtype=np.uint8)
-        thicc[0:(shape[0]-1), 0:(shape[1]-1), 0:(shape[2]-1)] = shape
-        #thicc[0:shape[0]-1, shape[1]-1:2*shape[1]-1, 0:shape[2]-1] = shape
+        thicc = np.append(image, imageHalf, axis = 1)
+        thicc[:,:,0] = [thicc[:,:,0] if (thicc[:,:,0] > min_values[0]) and (thicc[:,:,0] < max_values) else 0]
+        print(thicc)
+        #thicc[:,:,0][thicc[:,:,0]<min_values[0] | thicc[:,:,0]> max_values[0]] = 0
+        cv2.imshow("Color Picker", thicc)
         # ---------------------------------------------------------------- #
 
         key = cv2.waitKey(1) & 0xFF
@@ -64,7 +65,6 @@ def main():
     # Your code here
 
     # ---------------------------------------------------------------- #
-
-
+   
 if __name__ == "__main__":
     main()
