@@ -3,7 +3,7 @@
 
 # Put your import statements up here
 import cv2
-
+import numpy as np
 
 # We will encapsulate all the code inside this main() function.
 def main():
@@ -12,7 +12,8 @@ def main():
     # (2) Make a copy that has half the values of the original.
 
     # Your code here
-
+    image = cv2.imread("toy_knife.jpg")
+    imageHalf = np.floor_divide(image, 2)
     # ---------------------------------------------------------------- #
 
     cv2.namedWindow("Color Picker")
@@ -46,7 +47,10 @@ def main():
         # (5) Display the masked image in the CV2 window "Color Picker".
 
         # Your code here
-
+        shape = image.shape
+        thicc = np.zeros((shape[0], 2*shape[1], shape[2]), dtype=np.uint8)
+        thicc[0:(shape[0]-1), 0:(shape[1]-1), 0:(shape[2]-1)] = shape
+        #thicc[0:shape[0]-1, shape[1]-1:2*shape[1]-1, 0:shape[2]-1] = shape
         # ---------------------------------------------------------------- #
 
         key = cv2.waitKey(1) & 0xFF
