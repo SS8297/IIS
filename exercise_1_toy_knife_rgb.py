@@ -48,9 +48,7 @@ def main():
 
         # Your code here
         thicc = np.append(image, imageHalf, axis = 1)
-        thicc[:,:,0] = [thicc[:,:,0] if (thicc[:,:,0] > min_values[0]) and (thicc[:,:,0] < max_values) else 0]
-        print(thicc)
-        #thicc[:,:,0][thicc[:,:,0]<min_values[0] | thicc[:,:,0]> max_values[0]] = 0
+        np.array(list(map(lambda x : list(map(lambda y: 0 if (sum(y > min_values), (y < max_values)) else y, x)), thicc)))
         cv2.imshow("Color Picker", thicc)
         # ---------------------------------------------------------------- #
 
@@ -63,6 +61,9 @@ def main():
     # (7) Print the `min_values` and `max_values`.
 
     # Your code here
+    cv2.imwrite("masked_rbg.jpg")
+    print(f"min_values are {min_values}")
+    print(f"max_values are {max_values}")
 
     # ---------------------------------------------------------------- #
    
