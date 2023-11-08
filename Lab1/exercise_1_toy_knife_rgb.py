@@ -48,7 +48,8 @@ def main():
 
         # Your code here
         thicc = np.append(image, imageHalf, axis = 1)
-        np.array(list(map(lambda x : list(map(lambda y: np.where((y>min_values and y<max_values), y, 0), x)), thicc)))
+        #thicc2 = np.array(list(map(lambda x : list(map(lambda y: np.where((np.greater(y,min_values).all() & np.less(y,max_values).all()), y, 0), x)), thicc)))
+        np.array(list(map(lambda x : list(map(lambda y: np.floor_divide(y,2), x)), thicc)))
         cv2.imshow("Color Picker", thicc)
         # ---------------------------------------------------------------- #
 
